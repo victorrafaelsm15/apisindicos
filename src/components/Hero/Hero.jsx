@@ -28,7 +28,7 @@ export default function Hero() {
             <Button component={Link} to="/filiacao" size="lg" radius="xl" color="blue.7" rightSection={<ArrowRight size={17} />}>
               Quero me associar
             </Button>
-            <Button component="a" href="/cursos" size="lg" radius="xl" variant="outline" color="blue.7" leftSection={<GraduationCap size={17} />}>
+            <Button component={Link} to="/cursos" size="lg" radius="xl" variant="outline" color="blue.7" leftSection={<GraduationCap size={17} />}>
               Ver cursos gratuitos
             </Button>
           </div>
