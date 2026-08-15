@@ -13,13 +13,13 @@ npm run dev
 
 ## Painel administrativo
 
-Acesse em `/admin/login` (link também no rodapé do site).
+Acesse em `/#/admin/login` (link também no rodapé do site).
 
-- **E-mail:** admin@apisindicos.com
-- **Senha:** apis2026
-
-Troque essas credenciais antes de publicar (veja `src/lib/authService.js`,
-ou defina `VITE_ADMIN_EMAIL` / `VITE_ADMIN_PASSWORD` no `.env`).
+O login é controlado por `src/lib/authService.js`, usando as variáveis
+de ambiente `VITE_ADMIN_EMAIL` e `VITE_ADMIN_PASSWORD` (defina-as no
+`.env` local e como variáveis de ambiente na Vercel/host de produção
+antes de publicar — sem elas configuradas, os valores padrão do código
+ficam ativos, então não deixe de configurar em produção).
 
 O painel permite gerenciar: Notícias/Cursos, Eventos, Documentos,
 Diretoria e Parceiros — os mesmos tipos de conteúdo do site do
