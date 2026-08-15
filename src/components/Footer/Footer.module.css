@@ -1,0 +1,31 @@
+.footer { background: var(--blue-deep); color: rgba(255,255,255,0.7); }
+
+.inner {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  padding: 60px 24px 40px;
+}
+
+.brandCol p { font-size: 13px; line-height: 1.7; margin-top: 12px; max-width: 320px; }
+.logo { display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 18px; color: #fff; }
+.logoMark {
+  width: 34px; height: 34px; border-radius: 9px;
+  background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center;
+}
+
+.col h4 { color: #fff; font-size: 13.5px; margin: 0 0 16px; }
+.col { display: flex; flex-direction: column; gap: 11px; font-size: 13px; }
+.col a:hover { color: #fff; }
+
+.bottom { border-top: 1px solid rgba(255,255,255,0.12); }
+.bottomInner {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  padding: 20px 24px; font-size: 12px;
+}
+.adminLink { opacity: 0.55; font-size: 11.5px; }
+.adminLink:hover { opacity: 1; }
+
+@media (max-width: 700px) {
+  .inner { grid-template-columns: 1fr; }
+}
