@@ -10,8 +10,8 @@
 .brandCol p { font-size: 13px; line-height: 1.7; margin-top: 12px; max-width: 320px; }
 .logo { display: flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 18px; color: #fff; }
 .logoMark {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: rgba(255,255,255,0.14); display: flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #fff; padding: 5px; object-fit: contain; flex-shrink: 0;
 }
 
 .col h4 { color: #fff; font-size: 13.5px; margin: 0 0 16px; }

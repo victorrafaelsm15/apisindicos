@@ -5,6 +5,7 @@ import { useDisclosure } from '@mantine/hooks';
 import { IconBrandInstagram } from '@tabler/icons-react';
 import { ArrowUpRight } from 'lucide-react';
 import { siteInfo } from '../../data/siteContent';
+import logo from '../../assets/img/logo.png';
 import styles from './Header.module.css';
 
 const LINKS = [
@@ -30,7 +31,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.inner}`}>
         <Link to="/" className={styles.logo}>
-          <span className={styles.logoMark}>A</span>
+          <img src={logo} alt="APIS" className={styles.logoMark} />
           <span className={styles.logoText}>
             {siteInfo.shortName}
             <span className={styles.logoSub}>Síndicos do Piauí</span>

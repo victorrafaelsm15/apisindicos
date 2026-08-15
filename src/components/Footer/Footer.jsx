@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { IconBrandInstagram } from '@tabler/icons-react';
 import { siteInfo } from '../../data/siteContent';
+import logo from '../../assets/img/logo.png';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.brandCol}>
           <div className={styles.logo}>
-            <span className={styles.logoMark}>A</span>
+            <img src={logo} alt="APIS" className={styles.logoMark} />
             <span>{siteInfo.shortName}</span>
           </div>
           <p>{siteInfo.fullName}</p>
