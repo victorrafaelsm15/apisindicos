@@ -14,7 +14,7 @@ export const COLORS = {
   blueDeep: '#082452',
   amber: '#f5a524',
   bg: '#ffffff',
-  bgSoft: '#f3f7fd',
+  bgSoft: '#dbeafe',
   text: '#0f1b33',
   textMuted: '#5b6b8c',
   border: '#e2e9f5',

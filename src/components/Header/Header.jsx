@@ -34,7 +34,7 @@ export default function Header() {
           <img src={logo} alt="APIS" className={styles.logoMark} />
           <span className={styles.logoText}>
             {siteInfo.shortName}
-            <span className={styles.logoSub}>Síndicos do Piauí</span>
+            <span className={styles.logoSub}>Associação Piauiense de Síndicos</span>
           </span>
         </Link>
 
