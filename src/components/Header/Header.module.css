@@ -46,17 +46,17 @@
 }
 .navPill:hover { color: var(--blue-deep); }
 .navPillActive { background: #fff; color: var(--blue-deep); box-shadow: 0 2px 8px rgba(13,58,138,0.1); }
-@media (max-width: 1080px) { .nav { display: none; } }
+@media (max-width: 900px) { .nav { display: none; } }
 
 .actions { display: flex; align-items: center; gap: 14px; }
 .iconLink { color: var(--text-muted); display: flex; }
 .iconLink:hover { color: var(--blue); }
-@media (max-width: 1080px) { .iconLink { display: none; } }
+@media (max-width: 900px) { .iconLink { display: none; } }
 
 .burger { display: none; }
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .burger { display: block; }
-  .actions > a:not(.burger), .actions > button { display: none; }
+  .actions > a:not(.burger), .actions > button:not(.burger) { display: none; }
 }
 
 .drawerNav { display: flex; flex-direction: column; gap: 4px; }
