@@ -8,7 +8,7 @@ import { newsStore, eventsStore, documentsStore, boardStore, partnersStore } fro
 import styles from './AdminDashboard.module.css';
 
 const NAV_ITEMS = [
-  { key: 'news', label: 'Notícias / Cursos', icon: Newspaper },
+  { key: 'news', label: 'Notícias', icon: Newspaper },
   { key: 'events', label: 'Eventos', icon: CalendarDays },
   { key: 'documents', label: 'Documentos', icon: FileText },
   { key: 'board', label: 'Diretoria', icon: Users },
@@ -22,7 +22,7 @@ function Panel({ tab }) {
       return (
         <CrudManager
           store={newsStore}
-          title="Notícias e Cursos"
+          title="Notícias"
           fields={[
             { name: 'title', label: 'Título' },
             { name: 'subtitle', label: 'Subtítulo / Resumo' },

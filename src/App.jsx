@@ -3,7 +3,6 @@ import SiteLayout from './layouts/SiteLayout';
 import AdminLayout from './layouts/AdminLayout';
 import Home from './pages/Home';
 import Sobre from './pages/Sobre';
-import CursosPage from './pages/CursosPage';
 import DiretoriaPage from './pages/DiretoriaPage';
 import DocumentosPage from './pages/DocumentosPage';
 import ContatoPage from './pages/ContatoPage';
@@ -18,7 +17,6 @@ export default function App() {
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/sobre" element={<Sobre />} />
-        <Route path="/cursos" element={<CursosPage />} />
         <Route path="/diretoria" element={<DiretoriaPage />} />
         <Route path="/documentos" element={<DocumentosPage />} />
         <Route path="/contato" element={<ContatoPage />} />

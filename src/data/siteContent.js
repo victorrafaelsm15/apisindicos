@@ -70,7 +70,6 @@ export const affiliationText = 'A filiação à APIS é voluntária. Podem filia
 export const affiliationWhyJoin = [
   'Assessoria jurídica especializada',
   'Convênios e descontos exclusivos',
-  'Participação em eleições e assembleias',
   'Acesso a cursos e capacitações gratuitos',
   'Representação institucional forte',
 ];
@@ -88,11 +87,4 @@ export const memberDuties = [
   'Respeitar, cumprir e fazer cumprir o Estatuto Social e as decisões dos órgãos deliberativos',
   'Zelar pelo bom nome e resguardar a imagem da Associação',
   'Comparecer às assembleias gerais e votar',
-];
-
-export const courses = [
-  { title: 'Gestão Condominial', subtitle: 'Introdução ao Direito Condominial e Gestão da Inadimplência', aula: 'Aula 01' },
-  { title: 'Direito Condominial', subtitle: 'Convenção e Regimento Interno / Assembleias', aula: 'Aula 02' },
-  { title: 'Contabilidade Condominial', subtitle: 'Aspectos Trabalhistas e Tributários — Prestação de Contas e Previsão Orçamentária', aula: 'Aula 03' },
-  { title: 'Engenharia Condominial', subtitle: 'Manutenção Predial — Obras e Reformas em Condomínios', aula: 'Aula 04' },
 ];

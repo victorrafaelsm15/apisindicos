@@ -52,6 +52,12 @@
   border-radius: 100px;
 }
 
+.cardMission .tag {
+  background: rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+
 @media (max-width: 900px) {
   .bento { grid-template-columns: 1fr; }
 }

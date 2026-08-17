@@ -11,7 +11,6 @@ import styles from './Header.module.css';
 const LINKS = [
   { to: '/', label: 'Início' },
   { to: '/sobre', label: 'Sobre' },
-  { to: '/cursos', label: 'Cursos' },
   { to: '/diretoria', label: 'Diretoria' },
   { to: '/documentos', label: 'Documentos' },
   { to: '/contato', label: 'Contato' },

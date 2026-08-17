@@ -31,8 +31,8 @@ export default function About() {
             <p>{vision}</p>
           </motion.div>
 
-          <motion.div className={styles.card} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.2 }}>
-            <Heart size={22} color="var(--blue)" />
+          <motion.div className={`${styles.card} ${styles.cardMission}`} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: 0.2 }}>
+            <Heart size={22} color="#fff" />
             <h3>Valores</h3>
             <div className={styles.tagList}>
               {values.map((v) => <span key={v} className={styles.tag}>{v}</span>)}

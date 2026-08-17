@@ -1,7 +1,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { TextInput, Select, Button } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, CircleDollarSign } from 'lucide-react';
 import PageHeader from '../components/PageHeader/PageHeader';
 import { filiacaoStore } from '../lib/stores';
 import {
@@ -40,6 +40,15 @@ export default function Filiacao() {
       <section className={`section ${styles.section}`}>
         <div className="container">
           <p className={styles.intro}>{affiliationText}</p>
+          <div className={styles.priceBadgeWrap}>
+            <div className={styles.priceBadge}>
+              <CircleDollarSign size={30} />
+              <div>
+                <strong>R$ 60,00</strong>
+                <span>contribuição mensal</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

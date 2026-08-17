@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@mantine/core';
-import { ArrowRight, GraduationCap } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { siteInfo } from '../../data/siteContent';
 import styles from './Hero.module.css';
 
@@ -27,9 +27,6 @@ export default function Hero() {
           <div className={styles.actionsRow}>
             <Button component={Link} to="/filiacao" size="lg" radius="xl" color="blue.7" rightSection={<ArrowRight size={17} />}>
               Quero me associar
-            </Button>
-            <Button component={Link} to="/cursos" size="lg" radius="xl" variant="outline" color="blue.7" leftSection={<GraduationCap size={17} />}>
-              Ver cursos gratuitos
             </Button>
           </div>
         </motion.div>
