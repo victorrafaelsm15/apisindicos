@@ -56,7 +56,7 @@ export default function Header() {
             color="blue.7"
             rightSection={<ArrowUpRight size={15} />}
           >
-            Inscreva-se
+            Associe-se
           </Button>
           <Burger opened={opened} onClick={open} className={styles.burger} aria-label="Menu" />
         </div>
@@ -68,7 +68,7 @@ export default function Header() {
             <NavLink key={l.to} to={l.to} onClick={close} className={styles.drawerLink}>{l.label}</NavLink>
           ))}
           <Button component={Link} to="/filiacao" onClick={close} fullWidth mt="md" radius="xl" color="blue.7">
-            Inscreva-se
+            Associe-se
           </Button>
         </div>
       </Drawer>

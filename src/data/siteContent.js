@@ -9,7 +9,6 @@ export const siteInfo = {
   address: 'Avenida Marechal Castelo Branco, nº 911, Bairro Porenquanto — Shopping Rio Poty, Piso L4, Loja 415GH/Parte 500, Teresina/PI, CEP 64.003-901',
   instagram: '@apisindicos',
   instagramUrl: 'https://instagram.com/apisindicos',
-  inscricoesUrl: 'https://forms.gle/6vfn2Wi3mVq4TLcGA',
   foundedDate: '28 de junho de 2023',
   // PENDENTE — inserir número real no formato internacional, ex: "5586999999999"
   whatsapp: '',

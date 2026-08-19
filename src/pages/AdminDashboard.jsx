@@ -21,6 +21,7 @@ function Panel({ tab }) {
     case 'news':
       return (
         <CrudManager
+          key="news"
           store={newsStore}
           title="Notícias"
           fields={[
@@ -35,6 +36,7 @@ function Panel({ tab }) {
     case 'events':
       return (
         <CrudManager
+          key="events"
           store={eventsStore}
           title="Eventos"
           fields={[
@@ -48,6 +50,7 @@ function Panel({ tab }) {
     case 'documents':
       return (
         <CrudManager
+          key="documents"
           store={documentsStore}
           title="Documentos"
           fields={[
@@ -60,6 +63,7 @@ function Panel({ tab }) {
     case 'board':
       return (
         <CrudManager
+          key="board"
           store={boardStore}
           title="Diretoria"
           fields={[
@@ -73,6 +77,7 @@ function Panel({ tab }) {
     case 'partners':
       return (
         <CrudManager
+          key="partners"
           store={partnersStore}
           title="Parceiros"
           fields={[

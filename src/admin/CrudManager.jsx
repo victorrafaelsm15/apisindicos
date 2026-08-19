@@ -18,7 +18,14 @@ export default function CrudManager({ store, fields, title, emptyLabel }) {
 
   const load = () => {
     setLoading(true);
-    store.list().then((data) => { setItems(data); setLoading(false); });
+    store.list()
+      .then((data) => setItems(data))
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.error('Falha ao carregar itens:', err);
+        notifications.show({ title: 'Erro ao carregar', message: 'Não foi possível carregar os itens. Tente recarregar a página.', color: 'red' });
+      })
+      .finally(() => setLoading(false));
   };
   useEffect(load, []); // eslint-disable-line
 
