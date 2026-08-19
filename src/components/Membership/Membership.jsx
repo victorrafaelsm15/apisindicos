@@ -9,10 +9,10 @@ export default function Membership() {
     <section className={`section ${styles.section}`} id="filiacao">
       <div className="container">
         <div className={styles.header}>
-          <span className="eyebrow" style={{ background: 'rgba(255,255,255,0.14)', color: '#fff' }}>Filie-se</span>
+          <span className="eyebrow" style={{ background: 'rgba(255,255,255,0.14)', color: '#fff' }}>Associe-se</span>
           <h2 className={styles.title}>Faça parte da APIS</h2>
           <p className={styles.subtitle}>
-            A filiação é aberta a síndicos que já exerceram ou estão em exercício de mandato,
+            A associação é aberta a síndicos que já exerceram ou estão em exercício de mandato,
             em condomínios residenciais, comerciais, mistos ou equiparados.
           </p>
         </div>

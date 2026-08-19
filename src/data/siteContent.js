@@ -15,9 +15,9 @@ export const siteInfo = {
   whatsapp: '',
 };
 
-export const mission = 'Contribuir para a qualificação dos síndicos, representando-os para que suas reivindicações sejam atendidas em prol da coletividade. Lutar para que essa atividade laboral seja reconhecida como profissão e regulamentada pelo Ministério do Trabalho e Emprego.';
+export const mission = 'Contribuir para a qualificação dos Síndicos, representando-os para que suas reivindicações sejam atendidas em prol da coletividade. Lutar para que essa atividade laboral seja reconhecida como profissão e regulamentada pelo Ministério do Trabalho e Emprego.';
 
-export const vision = 'Ser uma entidade reconhecida a nível estadual e nacional por suas lutas e conquistas em prol dos síndicos, bem como pelos seus benefícios e resultados positivos proporcionados aos condomínios. Ser referência para os síndicos, condôminos e condomínios, oferecendo suporte técnico, administrativo e jurídico.';
+export const vision = 'Ser uma entidade reconhecida a nível estadual e nacional por suas lutas e conquistas em prol dos Síndicos, bem como pelos seus benefícios e resultados positivos proporcionados aos condomínios. Ser referência para os Síndicos, condôminos e condomínios, oferecendo suporte técnico, administrativo e jurídico.';
 
 export const values = [
   'Respeito', 'Responsabilidade', 'Compromisso', 'Motivação', 'Direcionamento',
@@ -65,7 +65,7 @@ export const boardStructure = [
   { role: 'Diretoria Jurídica', name: 'Lidiane Soares dos Santos' },
 ];
 
-export const affiliationText = 'A filiação à APIS é voluntária. Podem filiar-se pessoas físicas e jurídicas que já tenham exercido ou estejam em exercício do cargo de síndico, em condomínios comerciais, residenciais, mistos, industriais, de lotes ou equiparados. Após análise e aprovação do Corpo Diretivo, o interessado passa a integrar o quadro de associados, com direito aos benefícios previstos no Estatuto Social.';
+export const affiliationText = 'A associação à APIS é voluntária. Podem associar-se pessoas físicas e jurídicas que já tenham exercido ou estejam em exercício do cargo de síndico, em condomínios comerciais, residenciais, mistos, industriais, de lotes ou equiparados. Após análise e aprovação do Corpo Diretivo, o interessado passa a integrar o quadro de associados, com direito aos benefícios previstos no Estatuto Social.';
 
 export const affiliationWhyJoin = [
   'Assessoria jurídica especializada',

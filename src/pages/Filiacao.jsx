@@ -23,7 +23,7 @@ export default function Filiacao() {
   const onSubmit = async (values) => {
     try {
       await filiacaoStore.create({ ...values, status: 'pendente' });
-      notifications.show({ title: 'Solicitação enviada', message: 'Recebemos seu pedido de filiação. Em breve entraremos em contato.', color: 'blue' });
+      notifications.show({ title: 'Solicitação enviada', message: 'Recebemos seu pedido de associação. Em breve entraremos em contato.', color: 'blue' });
       reset({ categoria: CATEGORY_OPTIONS[0] });
     } catch {
       notifications.show({ title: 'Erro ao enviar', message: 'Não foi possível registrar sua solicitação. Tente novamente.', color: 'red' });
@@ -33,7 +33,7 @@ export default function Filiacao() {
   return (
     <>
       <PageHeader
-        title="Filie-se"
+        title="Associe-se"
         subtitle="Faça parte de uma associação sólida, com representação institucional em todo o Piauí."
       />
 

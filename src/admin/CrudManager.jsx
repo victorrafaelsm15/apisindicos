@@ -92,6 +92,7 @@ export default function CrudManager({ store, fields, title, emptyLabel }) {
                 key={f.name}
                 label={f.label}
                 bucket={f.bucket}
+                aspect={f.aspect}
                 value={form[f.name] || ''}
                 onChange={(url) => setForm({ ...form, [f.name]: url })}
               />

@@ -25,7 +25,7 @@ export default function Footer() {
 
         <div className={styles.col}>
           <h4>Comunidade</h4>
-          <Link to="/filiacao">Filie-se</Link>
+          <Link to="/filiacao">Associe-se</Link>
           <a href={siteInfo.instagramUrl} target="_blank" rel="noreferrer"><IconBrandInstagram size={14} style={{ display: 'inline', marginRight: 4 }} /> Instagram</a>
         </div>
       </div>

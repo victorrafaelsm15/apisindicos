@@ -10,10 +10,10 @@ export default function About() {
         <div className={styles.header}>
           <span className="eyebrow">Quem somos</span>
           <h2 className={`section-title ${styles.title}`}>
-            Uma associação criada por síndicos, para síndicos
+            Uma Associação criada por Síndicos, para Síndicos
           </h2>
           <p className="section-sub" style={{ maxWidth: 640 }}>
-            A APIS nasceu em {siteInfo.foundedDate} da necessidade de dar à categoria de síndicos do
+            A APIS nasceu em {siteInfo.foundedDate} da necessidade de dar à categoria de Síndicos do
             Piauí uma representação institucional própria — técnica, jurídica e de capacitação contínua.
           </p>
         </div>

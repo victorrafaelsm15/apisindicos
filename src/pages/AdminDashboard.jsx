@@ -13,7 +13,7 @@ const NAV_ITEMS = [
   { key: 'documents', label: 'Documentos', icon: FileText },
   { key: 'board', label: 'Diretoria', icon: Users },
   { key: 'partners', label: 'Parceiros', icon: Handshake },
-  { key: 'affiliations', label: 'Filiações', icon: UserPlus },
+  { key: 'affiliations', label: 'Associações', icon: UserPlus },
 ];
 
 function Panel({ tab }) {
@@ -28,7 +28,7 @@ function Panel({ tab }) {
             { name: 'subtitle', label: 'Subtítulo / Resumo' },
             { name: 'category', label: 'Categoria (ex: curso, noticia)' },
             { name: 'aula', label: 'Rótulo (ex: Aula 01) — opcional' },
-            { name: 'image_url', label: 'Imagem de capa (opcional)', type: 'file', bucket: 'capas-noticias' },
+            { name: 'image_url', label: 'Imagem de capa (opcional)', type: 'file', bucket: 'capas-noticias', aspect: 16 / 9 },
           ]}
         />
       );
@@ -53,7 +53,7 @@ function Panel({ tab }) {
           fields={[
             { name: 'title', label: 'Título do documento' },
             { name: 'description', label: 'Descrição', type: 'textarea' },
-            { name: 'file_url', label: 'Arquivo', type: 'file', bucket: 'documentos' },
+            { name: 'file_url', label: 'Arquivo', type: 'file', bucket: 'documentos', aspect: 4 / 3 },
           ]}
         />
       );
@@ -66,7 +66,7 @@ function Panel({ tab }) {
             { name: 'name', label: 'Nome completo' },
             { name: 'role', label: 'Cargo' },
             { name: 'display_order', label: 'Ordem de exibição (número)' },
-            { name: 'photo_url', label: 'Foto (opcional)', type: 'file', bucket: 'fotos-diretoria' },
+            { name: 'photo_url', label: 'Foto (opcional)', type: 'file', bucket: 'fotos-diretoria', aspect: 1 },
           ]}
         />
       );
@@ -77,7 +77,7 @@ function Panel({ tab }) {
           title="Parceiros"
           fields={[
             { name: 'name', label: 'Nome do parceiro' },
-            { name: 'logo_url', label: 'Logo (opcional)', type: 'file', bucket: 'logos-parceiros' },
+            { name: 'logo_url', label: 'Logo (opcional)', type: 'file', bucket: 'logos-parceiros', aspect: 16 / 9 },
           ]}
         />
       );

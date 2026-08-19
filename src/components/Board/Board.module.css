@@ -15,16 +15,21 @@
 }
 
 .photo {
-  width: 68px; height: 68px;
+  width: 128px; height: 128px;
   border-radius: 50%;
-  margin: 0 auto 14px;
+  margin: 0 auto 18px;
   background: linear-gradient(135deg, var(--blue), var(--blue-dark));
   color: #fff;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 18px;
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 34px;
   object-fit: cover;
   object-position: center top;
   flex-shrink: 0;
+  box-shadow: 0 6px 18px rgba(13,58,138,0.14);
+}
+
+@media (max-width: 560px) {
+  .photo { width: 104px; height: 104px; font-size: 28px; }
 }
 
 .role {

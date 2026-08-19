@@ -34,7 +34,7 @@ function downloadPdf(item) {
   doc.setFont(undefined, 'bold');
   doc.setFontSize(14);
   doc.setTextColor(15, 27, 51);
-  doc.text('Solicitação de Filiação', 14, 55);
+  doc.text('Solicitação de Associação', 14, 55);
 
   const rows = [
     ['Nome completo', item.nome_completo],
@@ -59,7 +59,7 @@ function downloadPdf(item) {
     y += 10;
   });
 
-  const fileName = `filiacao-${(item.nome_completo || 'solicitacao').trim().replace(/\s+/g, '-').toLowerCase()}.pdf`;
+  const fileName = `associacao-${(item.nome_completo || 'solicitacao').trim().replace(/\s+/g, '-').toLowerCase()}.pdf`;
   doc.save(fileName);
 }
 
@@ -84,7 +84,7 @@ export default function AffiliationsManager() {
   return (
     <div>
       <Group justify="space-between" mb="md">
-        <span style={{ fontWeight: 700 }}>Solicitações de Filiação</span>
+        <span style={{ fontWeight: 700 }}>Solicitações de Associação</span>
       </Group>
 
       {items.length ? (
@@ -129,7 +129,7 @@ export default function AffiliationsManager() {
           </Table.Tbody>
         </Table>
       ) : (
-        <p style={{ color: '#888', textAlign: 'center', padding: '30px 0' }}>Nenhuma solicitação de filiação recebida ainda.</p>
+        <p style={{ color: '#888', textAlign: 'center', padding: '30px 0' }}>Nenhuma solicitação de associação recebida ainda.</p>
       )}
     </div>
   );
