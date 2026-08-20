@@ -44,6 +44,7 @@ function Panel({ tab }) {
             { name: 'location', label: 'Local' },
             { name: 'event_date', label: 'Data (AAAA-MM-DD)' },
             { name: 'description', label: 'Descrição', type: 'textarea' },
+            { name: 'image_url', label: 'Foto do evento (opcional)', type: 'file', bucket: 'capas-eventos', aspect: 16 / 9 },
           ]}
         />
       );
