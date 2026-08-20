@@ -12,6 +12,8 @@ const LINKS = [
   { to: '/', label: 'Início' },
   { to: '/sobre', label: 'Sobre' },
   { to: '/diretoria', label: 'Diretoria' },
+  { to: '/noticias', label: 'Notícias' },
+  { to: '/eventos', label: 'Eventos' },
   { to: '/documentos', label: 'Documentos' },
   { to: '/contato', label: 'Contato' },
 ];

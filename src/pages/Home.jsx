@@ -1,6 +1,8 @@
 import Hero from '../components/Hero/Hero';
 import About from '../components/About/About';
 import Objectives from '../components/About/Objectives';
+import News from '../components/News/News';
+import Events from '../components/Events/Events';
 import Membership from '../components/Membership/Membership';
 import Board from '../components/Board/Board';
 import Partners from '../components/Partners/Partners';
@@ -13,6 +15,8 @@ export default function Home() {
       <Hero />
       <About />
       <Objectives />
+      <News />
+      <Events />
       <Membership />
       <Board />
       <Partners />

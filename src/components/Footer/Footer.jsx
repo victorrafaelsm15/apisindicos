@@ -20,6 +20,8 @@ export default function Footer() {
           <h4>Institucional</h4>
           <Link to="/sobre">Sobre</Link>
           <Link to="/diretoria">Diretoria</Link>
+          <Link to="/noticias">Notícias</Link>
+          <Link to="/eventos">Eventos</Link>
           <Link to="/documentos">Documentos</Link>
         </div>
 
