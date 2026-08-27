@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Button, Loader, Group } from '@mantine/core';
-import { ExternalLink } from 'lucide-react';
+import { Loader, Group } from '@mantine/core';
 import PageHeader from '../components/PageHeader/PageHeader';
 import { newsStore } from '../lib/stores';
 import styles from './NoticiaDetalhePage.module.css';
@@ -49,7 +48,7 @@ export default function NoticiaDetalhePage() {
 
   return (
     <>
-      <PageHeader title={news.title} subtitle={news.subtitle || undefined} />
+      <PageHeader title={news.title} subtitle={news.subtitle || undefined} link={news.external_link || undefined} />
       <section className={`section ${styles.section}`}>
         <div className={`container ${styles.wrap}`}>
           {news.image_url && <img src={news.image_url} alt="" className={styles.cover} />}
@@ -64,23 +63,6 @@ export default function NoticiaDetalhePage() {
           {news.created_at && <span className={styles.date}>{formatDate(news.created_at)}</span>}
 
           {news.subtitle && <p className={styles.description}>{news.subtitle}</p>}
-
-          {news.external_link && (
-            <div className={styles.actions}>
-              <Button
-                component="a"
-                href={news.external_link}
-                target="_blank"
-                rel="noreferrer"
-                variant="outline"
-                radius="xl"
-                color="blue.7"
-                leftSection={<ExternalLink size={16} />}
-              >
-                Ler matéria completa
-              </Button>
-            </div>
-          )}
 
           <Link to="/noticias" className={styles.back}>← Voltar para todas as notícias</Link>
         </div>

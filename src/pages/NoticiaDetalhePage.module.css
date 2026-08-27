@@ -39,8 +39,6 @@
   margin-bottom: 28px;
 }
 
-.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
-
 .back {
   display: inline-block;
   font-size: 13.5px;

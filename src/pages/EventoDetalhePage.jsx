@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { Modal, Button, TextInput, Select, Loader, Group } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { MapPin, ExternalLink, ClipboardList } from 'lucide-react';
+import { MapPin, ClipboardList } from 'lucide-react';
 import PageHeader from '../components/PageHeader/PageHeader';
 import { eventsStore, eventoInscricoesStore } from '../lib/stores';
 import { formatFullEventDate } from '../lib/eventDate';
@@ -61,7 +61,7 @@ export default function EventoDetalhePage() {
 
   return (
     <>
-      <PageHeader title={event.title} subtitle={event.location || undefined} />
+      <PageHeader title={event.title} subtitle={event.location || undefined} link={event.external_link || undefined} />
       <section className={`section ${styles.section}`}>
         <div className={`container ${styles.wrap}`}>
           {event.image_url && <img src={event.image_url} alt="" className={styles.cover} />}
@@ -73,27 +73,13 @@ export default function EventoDetalhePage() {
 
           {event.description && <p className={styles.description}>{event.description}</p>}
 
-          <div className={styles.actions}>
-            {event.allow_registration && (
+          {event.allow_registration && (
+            <div className={styles.actions}>
               <Button leftSection={<ClipboardList size={16} />} radius="xl" color="blue.7" onClick={() => setFormOpen(true)}>
                 Ficha de Inscrição
               </Button>
-            )}
-            {event.external_link && (
-              <Button
-                component="a"
-                href={event.external_link}
-                target="_blank"
-                rel="noreferrer"
-                variant="outline"
-                radius="xl"
-                color="blue.7"
-                leftSection={<ExternalLink size={16} />}
-              >
-                Saiba mais no site oficial
-              </Button>
-            )}
-          </div>
+            </div>
+          )}
 
           <Link to="/eventos" className={styles.back}>← Voltar para todos os eventos</Link>
         </div>
