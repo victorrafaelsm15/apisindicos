@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Sobre from './pages/Sobre';
 import DiretoriaPage from './pages/DiretoriaPage';
 import NoticiasPage from './pages/NoticiasPage';
+import NoticiaDetalhePage from './pages/NoticiaDetalhePage';
 import EventosPage from './pages/EventosPage';
 import EventoDetalhePage from './pages/EventoDetalhePage';
 import DocumentosPage from './pages/DocumentosPage';
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/diretoria" element={<DiretoriaPage />} />
         <Route path="/noticias" element={<NoticiasPage />} />
+        <Route path="/noticias/:id" element={<NoticiaDetalhePage />} />
         <Route path="/eventos" element={<EventosPage />} />
         <Route path="/eventos/:id" element={<EventoDetalhePage />} />
         <Route path="/documentos" element={<DocumentosPage />} />

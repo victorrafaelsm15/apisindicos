@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { newsStore } from '../../lib/stores';
 import styles from './News.module.css';
 
@@ -37,7 +38,7 @@ export default function News() {
         ) : (
           <div className={styles.grid}>
             {items.map((n) => (
-              <article key={n.id} className={styles.card}>
+              <Link key={n.id} to={`/noticias/${n.id}`} className={styles.card}>
                 {n.image_url && <img src={n.image_url} alt="" className={styles.cover} />}
                 <div className={styles.body}>
                   {n.category && <span className={styles.tag}>{n.category}</span>}
@@ -45,7 +46,7 @@ export default function News() {
                   {n.subtitle && <p>{n.subtitle}</p>}
                   {n.created_at && <span className={styles.date}>{formatDate(n.created_at)}</span>}
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         )}

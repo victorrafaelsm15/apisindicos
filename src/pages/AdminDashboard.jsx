@@ -5,7 +5,7 @@ import { Newspaper, CalendarDays, FileText, Users, Handshake, UserPlus, Clipboar
 import CrudManager from '../admin/CrudManager';
 import AffiliationsManager from '../admin/AffiliationsManager';
 import RegistrationsManager from '../admin/RegistrationsManager';
-import { newsStore, eventsAdminStore, documentsStore, boardStore, partnersStore } from '../lib/stores';
+import { newsAdminStore, eventsAdminStore, documentsStore, boardStore, partnersStore } from '../lib/stores';
 import styles from './AdminDashboard.module.css';
 
 const NAV_ITEMS = [
@@ -24,7 +24,7 @@ function Panel({ tab }) {
       return (
         <CrudManager
           key="news"
-          store={newsStore}
+          store={newsAdminStore}
           title="Notícias"
           fields={[
             { name: 'title', label: 'Título' },
@@ -32,6 +32,8 @@ function Panel({ tab }) {
             { name: 'category', label: 'Categoria (ex: curso, noticia)' },
             { name: 'aula', label: 'Rótulo (ex: Aula 01) — opcional' },
             { name: 'image_url', label: 'Imagem de capa (opcional)', type: 'file', bucket: 'capas-noticias', aspect: 16 / 9 },
+            { name: 'external_link', label: 'Link externo (opcional)' },
+            { name: 'is_featured_popup', label: 'Destacar como pop-up no site', type: 'boolean', description: 'Apenas uma notícia pode estar em destaque por vez — marcar esta desmarca outra automaticamente. Se um evento também estiver em destaque, o evento tem prioridade de exibição.' },
           ]}
         />
       );

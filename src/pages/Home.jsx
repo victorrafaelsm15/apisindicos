@@ -8,12 +8,12 @@ import Board from '../components/Board/Board';
 import Partners from '../components/Partners/Partners';
 import Documents from '../components/Documents/Documents';
 import Contact from '../components/Contact/Contact';
-import EventPopup from '../components/EventPopup/EventPopup';
+import FeaturedPopup from '../components/FeaturedPopup/FeaturedPopup';
 
 export default function Home() {
   return (
     <>
-      <EventPopup />
+      <FeaturedPopup />
       <Hero />
       <About />
       <Objectives />
