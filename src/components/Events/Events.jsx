@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin } from 'lucide-react';
+import { MapPin, ExternalLink } from 'lucide-react';
 import { eventsStore } from '../../lib/stores';
 import { parseEventDate, formatFullEventDate, eventMonthShort } from '../../lib/eventDate';
+import { normalizeExternalUrl, hostnameOf } from '../../lib/url';
 import styles from './Events.module.css';
+
+function openExternalLink(e, url) {
+  e.preventDefault();
+  e.stopPropagation();
+  window.open(normalizeExternalUrl(url), '_blank', 'noopener');
+}
 
 export default function Events() {
   const [items, setItems] = useState([]);
@@ -43,6 +50,11 @@ export default function Events() {
                   {e.image_url && <img src={e.image_url} alt="" className={styles.cover} />}
                   <div className={styles.info}>
                     <h3>{e.title}</h3>
+                    {e.external_link && (
+                      <button type="button" className={styles.externalLink} onClick={(ev) => openExternalLink(ev, e.external_link)}>
+                        <ExternalLink size={12} /> {hostnameOf(e.external_link)}
+                      </button>
+                    )}
                     <div className={styles.meta}>
                       {e.location && (<><MapPin size={13} /> {e.location}</>)}
                       {e.location && e.event_date && ' · '}

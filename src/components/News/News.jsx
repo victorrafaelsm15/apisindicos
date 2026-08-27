@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ExternalLink } from 'lucide-react';
 import { newsStore } from '../../lib/stores';
+import { normalizeExternalUrl, hostnameOf } from '../../lib/url';
 import styles from './News.module.css';
 
 function formatDate(iso) {
@@ -10,6 +12,12 @@ function formatDate(iso) {
   } catch {
     return '';
   }
+}
+
+function openExternalLink(e, url) {
+  e.preventDefault();
+  e.stopPropagation();
+  window.open(normalizeExternalUrl(url), '_blank', 'noopener');
 }
 
 export default function News() {
@@ -43,6 +51,11 @@ export default function News() {
                 <div className={styles.body}>
                   {n.category && <span className={styles.tag}>{n.category}</span>}
                   <h3>{n.title}</h3>
+                  {n.external_link && (
+                    <button type="button" className={styles.externalLink} onClick={(e) => openExternalLink(e, n.external_link)}>
+                      <ExternalLink size={12} /> {hostnameOf(n.external_link)}
+                    </button>
+                  )}
                   {n.subtitle && <p>{n.subtitle}</p>}
                   {n.created_at && <span className={styles.date}>{formatDate(n.created_at)}</span>}
                 </div>
