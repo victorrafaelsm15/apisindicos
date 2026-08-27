@@ -9,7 +9,7 @@ import { eventsStore, eventoInscricoesStore } from '../lib/stores';
 import { formatFullEventDate } from '../lib/eventDate';
 import styles from './EventoDetalhePage.module.css';
 
-const PERFIL_OPTIONS = ['Síndico', 'Administradora', 'Prestador(a) de Serviços'];
+const PERFIL_OPTIONS = ['Síndico', 'Conselheiro(a)', 'Administradora', 'Prestador(a) de Serviços'];
 
 export default function EventoDetalhePage() {
   const { id } = useParams();
