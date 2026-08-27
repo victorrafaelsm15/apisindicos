@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Table, Loader, Group, Select, ActionIcon, Tooltip } from '@mantine/core';
-import { Download } from 'lucide-react';
+import { notifications } from '@mantine/notifications';
+import { Download, Trash2 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { eventoInscricoesStore, eventsStore } from '../lib/stores';
 import { siteInfo } from '../data/siteContent';
@@ -72,6 +73,13 @@ export default function RegistrationsManager() {
   };
   useEffect(load, []);
 
+  const handleDelete = async (item) => {
+    if (!window.confirm(`Excluir a inscrição de "${item.nome_completo}"? Esta ação não pode ser desfeita.`)) return;
+    await eventoInscricoesStore.remove(item.id);
+    notifications.show({ message: 'Inscrição excluída.', color: 'gray' });
+    load();
+  };
+
   const eventTitleById = useMemo(() => {
     const map = {};
     events.forEach((e) => { map[e.id] = e.title; });
@@ -104,7 +112,7 @@ export default function RegistrationsManager() {
               <Table.Th>Telefone</Table.Th>
               <Table.Th>E-mail</Table.Th>
               <Table.Th>Data</Table.Th>
-              <Table.Th style={{ width: 50 }}></Table.Th>
+              <Table.Th style={{ width: 76 }}></Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -118,9 +126,14 @@ export default function RegistrationsManager() {
                 <Table.Td style={{ fontSize: 13 }}>{item.email}</Table.Td>
                 <Table.Td style={{ fontSize: 13 }}>{formatDate(item.created_at)}</Table.Td>
                 <Table.Td>
-                  <Tooltip label="Baixar PDF">
-                    <ActionIcon variant="subtle" color="blue" onClick={() => downloadPdf(item, eventTitleById[item.event_id])}><Download size={15} /></ActionIcon>
-                  </Tooltip>
+                  <Group gap={6} wrap="nowrap">
+                    <Tooltip label="Baixar PDF">
+                      <ActionIcon variant="subtle" color="blue" onClick={() => downloadPdf(item, eventTitleById[item.event_id])}><Download size={15} /></ActionIcon>
+                    </Tooltip>
+                    <Tooltip label="Excluir">
+                      <ActionIcon variant="subtle" color="red" onClick={() => handleDelete(item)}><Trash2 size={15} /></ActionIcon>
+                    </Tooltip>
+                  </Group>
                 </Table.Td>
               </Table.Tr>
             ))}
