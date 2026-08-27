@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Drawer, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Newspaper, CalendarDays, FileText, Users, Handshake, UserPlus } from 'lucide-react';
+import { Newspaper, CalendarDays, FileText, Users, Handshake, UserPlus, ClipboardList } from 'lucide-react';
 import CrudManager from '../admin/CrudManager';
 import AffiliationsManager from '../admin/AffiliationsManager';
-import { newsStore, eventsStore, documentsStore, boardStore, partnersStore } from '../lib/stores';
+import RegistrationsManager from '../admin/RegistrationsManager';
+import { newsStore, eventsAdminStore, documentsStore, boardStore, partnersStore } from '../lib/stores';
 import styles from './AdminDashboard.module.css';
 
 const NAV_ITEMS = [
@@ -14,6 +15,7 @@ const NAV_ITEMS = [
   { key: 'board', label: 'Diretoria', icon: Users },
   { key: 'partners', label: 'Parceiros', icon: Handshake },
   { key: 'affiliations', label: 'Associações', icon: UserPlus },
+  { key: 'registrations', label: 'Inscrições', icon: ClipboardList },
 ];
 
 function Panel({ tab }) {
@@ -37,7 +39,7 @@ function Panel({ tab }) {
       return (
         <CrudManager
           key="events"
-          store={eventsStore}
+          store={eventsAdminStore}
           title="Eventos"
           fields={[
             { name: 'title', label: 'Título do evento' },
@@ -45,6 +47,9 @@ function Panel({ tab }) {
             { name: 'event_date', label: 'Data (AAAA-MM-DD)' },
             { name: 'description', label: 'Descrição', type: 'textarea' },
             { name: 'image_url', label: 'Foto do evento (opcional)', type: 'file', bucket: 'capas-eventos', aspect: 16 / 9 },
+            { name: 'external_link', label: 'Link externo (opcional)' },
+            { name: 'is_featured_popup', label: 'Destacar como pop-up no site', type: 'boolean', description: 'Apenas um evento pode estar em destaque por vez — marcar este desmarca outro automaticamente' },
+            { name: 'allow_registration', label: 'Permitir inscrição neste evento', type: 'boolean' },
           ]}
         />
       );
@@ -89,6 +94,8 @@ function Panel({ tab }) {
       );
     case 'affiliations':
       return <AffiliationsManager />;
+    case 'registrations':
+      return <RegistrationsManager />;
     default:
       return null;
   }

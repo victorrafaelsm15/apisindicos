@@ -1,22 +1,9 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 import { eventsStore } from '../../lib/stores';
+import { parseEventDate, formatFullEventDate, eventMonthShort } from '../../lib/eventDate';
 import styles from './Events.module.css';
-
-const MONTHS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-
-function parseEventDate(value) {
-  if (!value) return null;
-  const [year, month, day] = value.split('-').map(Number);
-  if (!year || !month || !day) return null;
-  return { year, month, day };
-}
-
-function formatFullDate(value) {
-  const d = parseEventDate(value);
-  if (!d) return '';
-  return `${String(d.day).padStart(2, '0')} de ${MONTHS[d.month - 1]}. de ${d.year}`;
-}
 
 export default function Events() {
   const [items, setItems] = useState([]);
@@ -46,11 +33,11 @@ export default function Events() {
             {items.map((e) => {
               const d = parseEventDate(e.event_date);
               return (
-                <div key={e.id} className={styles.card}>
+                <Link key={e.id} to={`/eventos/${e.id}`} className={styles.card}>
                   {d && (
                     <div className={styles.dateBadge}>
                       <span className={styles.day}>{String(d.day).padStart(2, '0')}</span>
-                      <span className={styles.month}>{MONTHS[d.month - 1]}</span>
+                      <span className={styles.month}>{eventMonthShort(e.event_date)}</span>
                     </div>
                   )}
                   {e.image_url && <img src={e.image_url} alt="" className={styles.cover} />}
@@ -59,11 +46,11 @@ export default function Events() {
                     <div className={styles.meta}>
                       {e.location && (<><MapPin size={13} /> {e.location}</>)}
                       {e.location && e.event_date && ' · '}
-                      {e.event_date && formatFullDate(e.event_date)}
+                      {e.event_date && formatFullEventDate(e.event_date)}
                     </div>
                     {e.description && <p>{e.description}</p>}
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>

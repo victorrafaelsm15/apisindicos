@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Button, TextInput, Textarea, Table, ActionIcon, Modal, Loader, Group } from '@mantine/core';
+import { Button, TextInput, Textarea, Switch, Table, ActionIcon, Modal, Loader, Group } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import { Plus, Trash2, Pencil, Paperclip } from 'lucide-react';
 import FileUploadField from './FileUploadField';
 
 /**
  * Gerenciador CRUD genérico e reutilizável.
- * fields: [{ name, label, type: 'text'|'textarea'|'file', bucket? }] — bucket é obrigatório quando type === 'file'.
+ * fields: [{ name, label, type: 'text'|'textarea'|'file'|'boolean', bucket? }] — bucket é obrigatório quando type === 'file'.
  */
 export default function CrudManager({ store, fields, title, emptyLabel }) {
   const [items, setItems] = useState([]);
@@ -102,6 +102,19 @@ export default function CrudManager({ store, fields, title, emptyLabel }) {
                 aspect={f.aspect}
                 value={form[f.name] || ''}
                 onChange={(url) => setForm({ ...form, [f.name]: url })}
+              />
+            );
+          }
+          if (f.type === 'boolean') {
+            return (
+              <Switch
+                key={f.name}
+                label={f.label}
+                description={f.description}
+                mb="sm"
+                mt="sm"
+                checked={!!form[f.name]}
+                onChange={(e) => setForm({ ...form, [f.name]: e.currentTarget.checked })}
               />
             );
           }

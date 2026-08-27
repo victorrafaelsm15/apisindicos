@@ -8,10 +8,12 @@ import Board from '../components/Board/Board';
 import Partners from '../components/Partners/Partners';
 import Documents from '../components/Documents/Documents';
 import Contact from '../components/Contact/Contact';
+import EventPopup from '../components/EventPopup/EventPopup';
 
 export default function Home() {
   return (
     <>
+      <EventPopup />
       <Hero />
       <About />
       <Objectives />

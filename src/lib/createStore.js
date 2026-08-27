@@ -31,6 +31,16 @@ export function createStore(table, { orderBy = 'created_at', ascending = false }
         return ascending ? cmp : -cmp;
       });
     },
+    async get(id) {
+      if (isSupabaseConfigured) {
+        try {
+          const { data, error } = await supabase.from(table).select('*').eq('id', id).single();
+          if (error) throw error;
+          return data;
+        } catch { /* fallback local */ }
+      }
+      return readLocal(localKey).find((i) => i.id === id) || null;
+    },
     async create(payload) {
       const record = { id: uid(), created_at: new Date().toISOString(), ...payload };
       if (isSupabaseConfigured) {

@@ -1,0 +1,42 @@
+.section { }
+
+.wrap { max-width: 760px; margin: 0 auto; }
+
+.cover {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 24px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--blue);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.meta span { display: inline-flex; align-items: center; gap: 6px; }
+
+.description {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-line;
+  margin-bottom: 28px;
+}
+
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+
+.back {
+  display: inline-block;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.back:hover { color: var(--blue); }
+
+.notFound { text-align: center; padding: 60px 0; color: var(--text-muted); }
