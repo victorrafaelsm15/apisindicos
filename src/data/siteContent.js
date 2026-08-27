@@ -10,8 +10,7 @@ export const siteInfo = {
   instagram: '@apisindicos',
   instagramUrl: 'https://instagram.com/apisindicos',
   foundedDate: '28 de junho de 2023',
-  // PENDENTE — inserir número real no formato internacional, ex: "5586999999999"
-  whatsapp: '',
+  whatsapp: '558695083939',
 };
 
 export const mission = 'Contribuir para a qualificação dos Síndicos, representando-os para que suas reivindicações sejam atendidas em prol da coletividade. Lutar para que essa atividade laboral seja reconhecida como profissão e regulamentada pelo Ministério do Trabalho e Emprego.';
