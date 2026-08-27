@@ -15,9 +15,9 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  color: rgba(255,255,255,0.78);
-  font-size: 14px;
-  font-weight: 600;
-  margin-top: 10px;
+  color: #7ab8ff;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 10px;
 }
-.link:hover { color: #fff; text-decoration: underline; }
+.link:hover { color: #a8d1ff; text-decoration: underline; }
