@@ -88,46 +88,48 @@ export default function AffiliationsManager() {
       </Group>
 
       {items.length ? (
-        <Table verticalSpacing="sm" withTableBorder>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>Nome</Table.Th>
-              <Table.Th>Condomínio</Table.Th>
-              <Table.Th>Categoria</Table.Th>
-              <Table.Th>Data</Table.Th>
-              <Table.Th>Status</Table.Th>
-              <Table.Th style={{ width: 140 }}>Ações</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {items.map((item) => (
-              <Table.Tr key={item.id}>
-                <Table.Td style={{ fontWeight: 600 }}>{item.nome_completo}</Table.Td>
-                <Table.Td style={{ color: '#888', fontSize: 13 }}>{item.condominio || '—'}</Table.Td>
-                <Table.Td style={{ fontSize: 13 }}>{item.categoria}</Table.Td>
-                <Table.Td style={{ fontSize: 13 }}>{formatDate(item.created_at)}</Table.Td>
-                <Table.Td><Badge color={STATUS_COLOR[item.status] || 'gray'} variant="light">{STATUS_LABEL[item.status] || item.status}</Badge></Table.Td>
-                <Table.Td>
-                  <Group gap={6} wrap="nowrap">
-                    <Tooltip label="Baixar PDF">
-                      <ActionIcon variant="subtle" color="blue" onClick={() => downloadPdf(item)}><Download size={15} /></ActionIcon>
-                    </Tooltip>
-                    {item.status !== 'aprovado' && (
-                      <Tooltip label="Aprovar">
-                        <ActionIcon variant="subtle" color="green" onClick={() => setStatus(item, 'aprovado')}><Check size={15} /></ActionIcon>
-                      </Tooltip>
-                    )}
-                    {item.status !== 'rejeitado' && (
-                      <Tooltip label="Rejeitar">
-                        <ActionIcon variant="subtle" color="red" onClick={() => setStatus(item, 'rejeitado')}><X size={15} /></ActionIcon>
-                      </Tooltip>
-                    )}
-                  </Group>
-                </Table.Td>
+        <Table.ScrollContainer minWidth={760}>
+          <Table verticalSpacing="sm" withTableBorder>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Nome</Table.Th>
+                <Table.Th>Condomínio</Table.Th>
+                <Table.Th>Categoria</Table.Th>
+                <Table.Th>Data</Table.Th>
+                <Table.Th>Status</Table.Th>
+                <Table.Th style={{ width: 140 }}>Ações</Table.Th>
               </Table.Tr>
-            ))}
-          </Table.Tbody>
-        </Table>
+            </Table.Thead>
+            <Table.Tbody>
+              {items.map((item) => (
+                <Table.Tr key={item.id}>
+                  <Table.Td style={{ fontWeight: 600, whiteSpace: 'nowrap' }}>{item.nome_completo}</Table.Td>
+                  <Table.Td style={{ color: '#888', fontSize: 13, whiteSpace: 'nowrap' }}>{item.condominio || '—'}</Table.Td>
+                  <Table.Td style={{ fontSize: 13, whiteSpace: 'nowrap' }}>{item.categoria}</Table.Td>
+                  <Table.Td style={{ fontSize: 13, whiteSpace: 'nowrap' }}>{formatDate(item.created_at)}</Table.Td>
+                  <Table.Td><Badge color={STATUS_COLOR[item.status] || 'gray'} variant="light">{STATUS_LABEL[item.status] || item.status}</Badge></Table.Td>
+                  <Table.Td>
+                    <Group gap={6} wrap="nowrap">
+                      <Tooltip label="Baixar PDF">
+                        <ActionIcon variant="subtle" color="blue" onClick={() => downloadPdf(item)}><Download size={15} /></ActionIcon>
+                      </Tooltip>
+                      {item.status !== 'aprovado' && (
+                        <Tooltip label="Aprovar">
+                          <ActionIcon variant="subtle" color="green" onClick={() => setStatus(item, 'aprovado')}><Check size={15} /></ActionIcon>
+                        </Tooltip>
+                      )}
+                      {item.status !== 'rejeitado' && (
+                        <Tooltip label="Rejeitar">
+                          <ActionIcon variant="subtle" color="red" onClick={() => setStatus(item, 'rejeitado')}><X size={15} /></ActionIcon>
+                        </Tooltip>
+                      )}
+                    </Group>
+                  </Table.Td>
+                </Table.Tr>
+              ))}
+            </Table.Tbody>
+          </Table>
+        </Table.ScrollContainer>
       ) : (
         <p style={{ color: '#888', textAlign: 'center', padding: '30px 0' }}>Nenhuma solicitação de associação recebida ainda.</p>
       )}

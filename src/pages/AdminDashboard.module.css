@@ -61,4 +61,5 @@
     text-align: left;
   }
   .drawerItemActive { background: rgba(25,88,201,0.1); color: var(--blue); }
+  .content { padding: 14px; }
 }
