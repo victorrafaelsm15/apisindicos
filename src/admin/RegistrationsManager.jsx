@@ -87,8 +87,12 @@ export default function RegistrationsManager() {
 
   const handleDelete = async (item) => {
     if (!window.confirm(`Excluir a inscrição de "${item.nome_completo}"? Esta ação não pode ser desfeita.`)) return;
-    await eventoInscricoesStore.remove(item.id);
-    notifications.show({ message: 'Inscrição excluída.', color: 'gray' });
+    try {
+      await eventoInscricoesStore.remove(item.id);
+      notifications.show({ message: 'Inscrição excluída.', color: 'gray' });
+    } catch {
+      notifications.show({ title: 'Erro', message: 'Não foi possível excluir a inscrição. Faça login novamente e tente outra vez.', color: 'red' });
+    }
     load();
   };
 

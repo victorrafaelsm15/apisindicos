@@ -5,7 +5,7 @@ import { logout } from '../lib/authService';
 
 export default function AdminLayout() {
   const navigate = useNavigate();
-  const handleLogout = () => { logout(); navigate('/admin/login'); };
+  const handleLogout = async () => { await logout(); navigate('/admin/login'); };
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg-soft)' }}>

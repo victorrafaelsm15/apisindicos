@@ -41,25 +41,25 @@ export function createStore(table, { orderBy = 'created_at', ascending = false }
       }
       return readLocal(localKey).find((i) => i.id === id) || null;
     },
+    // Escritas: com o Supabase configurado, um erro (inclusive falta de
+    // permissão) é repassado a quem chamou. Cair no localStorage aqui fazia
+    // o dado parecer salvo sem nunca chegar ao banco.
     async create(payload) {
       const record = { id: uid(), created_at: new Date().toISOString(), ...payload };
       if (isSupabaseConfigured) {
-        try {
-          const { data, error } = await supabase.from(table).insert(record).select().single();
-          if (error) throw error;
-          return data;
-        } catch { /* fallback local */ }
+        // Sem .select(): formulários públicos podem inserir, mas não ler a tabela.
+        const { error } = await supabase.from(table).insert(record);
+        if (error) throw error;
+        return record;
       }
       const list = readLocal(localKey); list.push(record); writeLocal(localKey, list);
       return record;
     },
     async update(id, payload) {
       if (isSupabaseConfigured) {
-        try {
-          const { data, error } = await supabase.from(table).update(payload).eq('id', id).select().single();
-          if (error) throw error;
-          return data;
-        } catch { /* fallback local */ }
+        const { data, error } = await supabase.from(table).update(payload).eq('id', id).select().single();
+        if (error) throw error;
+        return data;
       }
       const list = readLocal(localKey);
       const idx = list.findIndex((i) => i.id === id);
@@ -68,11 +68,11 @@ export function createStore(table, { orderBy = 'created_at', ascending = false }
     },
     async remove(id) {
       if (isSupabaseConfigured) {
-        try {
-          const { error } = await supabase.from(table).delete().eq('id', id);
-          if (error) throw error;
-          return true;
-        } catch { /* fallback local */ }
+        // .select() para detectar exclusão bloqueada pela RLS (0 linhas, sem erro).
+        const { data, error } = await supabase.from(table).delete().eq('id', id).select('id');
+        if (error) throw error;
+        if (!data?.length) throw new Error('Sem permissão para excluir este item.');
+        return true;
       }
       writeLocal(localKey, readLocal(localKey).filter((i) => i.id !== id));
       return true;

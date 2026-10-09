@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Table, Badge, ActionIcon, Loader, Group, Tooltip, Checkbox, Button } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { Download, Check, X, FileDown } from 'lucide-react';
+import { Download, Check, X, FileDown, IdCard, FileText } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { filiacaoStore } from '../lib/stores';
+import { getAnexoUrl } from '../lib/filiacao';
 import { siteInfo } from '../data/siteContent';
 
 const STATUS_COLOR = { pendente: 'yellow', aprovado: 'green', rejeitado: 'red' };
@@ -12,6 +13,41 @@ const STATUS_LABEL = { pendente: 'Pendente', aprovado: 'Aprovado', rejeitado: 'R
 function formatDate(iso) {
   if (!iso) return '—';
   try { return new Date(iso).toLocaleDateString('pt-BR'); } catch { return '—'; }
+}
+
+function formatDateTime(iso) {
+  if (!iso) return '—';
+  try { return new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }); } catch { return '—'; }
+}
+
+// data_nascimento é gravada como AAAA-MM-DD; exibe como DD/MM/AAAA.
+function formatBirthDate(value) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value || '');
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : (value || '—');
+}
+
+function formatEndereco(item) {
+  const cidadeUf = [item.cidade, item.estado].filter(Boolean).join('/');
+  const parts = [item.endereco, item.bairro, cidadeUf, item.cep && `CEP ${item.cep}`].filter(Boolean);
+  return parts.length ? parts.join(' — ') : '—';
+}
+
+function formatTermos(item) {
+  if (!item.termos_aceitos_em) return '—';
+  const ok = item.termo_adesao_aceito && item.declaracao_veracidade_aceita;
+  return `${ok ? 'Aceitos' : 'Incompletos'} em ${formatDateTime(item.termos_aceitos_em)}`;
+}
+
+async function openAnexo(path) {
+  // Abre a aba antes do await para não ser bloqueada como pop-up.
+  const win = window.open('', '_blank');
+  try {
+    const url = await getAnexoUrl(path);
+    if (win) win.location.href = url; else window.location.href = url;
+  } catch {
+    if (win) win.close();
+    notifications.show({ title: 'Erro', message: 'Não foi possível abrir o anexo.', color: 'red' });
+  }
 }
 
 function drawAffiliationPage(doc, item) {
@@ -39,10 +75,16 @@ function drawAffiliationPage(doc, item) {
     ['CPF / CNPJ', item.cpf_cnpj],
     ['E-mail', item.email],
     ['Telefone', item.telefone],
+    ['Data de nascimento', formatBirthDate(item.data_nascimento)],
+    ['Estado civil', item.estado_civil || '—'],
+    ['Endereço', formatEndereco(item)],
     ['Condomínio', item.condominio || '—'],
     ['Categoria', item.categoria],
+    ['Documento de identidade', item.doc_identidade_path ? 'Anexado (ver painel)' : '—'],
+    ['Ata de eleição', item.ata_eleicao_path ? 'Anexada (ver painel)' : '—'],
+    ['Termos de adesão', formatTermos(item)],
     ['Status', STATUS_LABEL[item.status] || item.status],
-    ['Data da solicitação', formatDate(item.created_at)],
+    ['Data da solicitação', formatDateTime(item.created_at)],
   ];
 
   let y = 68;
@@ -53,8 +95,9 @@ function drawAffiliationPage(doc, item) {
     doc.text(`${label}:`, 14, y);
     doc.setFont(undefined, 'normal');
     doc.setTextColor(60, 60, 60);
-    doc.text(String(value ?? '—'), 65, y, { maxWidth: 130 });
-    y += 10;
+    const lines = doc.splitTextToSize(String(value ?? '—'), 125);
+    doc.text(lines, 70, y);
+    y += 7 + lines.length * 5;
   });
 }
 
@@ -86,8 +129,12 @@ export default function AffiliationsManager() {
   useEffect(load, []);
 
   const setStatus = async (item, status) => {
-    await filiacaoStore.update(item.id, { status });
-    notifications.show({ message: status === 'aprovado' ? 'Solicitação aprovada.' : 'Solicitação rejeitada.', color: status === 'aprovado' ? 'green' : 'red' });
+    try {
+      await filiacaoStore.update(item.id, { status });
+      notifications.show({ message: status === 'aprovado' ? 'Solicitação aprovada.' : 'Solicitação rejeitada.', color: status === 'aprovado' ? 'green' : 'red' });
+    } catch {
+      notifications.show({ title: 'Erro', message: 'Não foi possível atualizar a solicitação. Faça login novamente e tente outra vez.', color: 'red' });
+    }
     load();
   };
 
@@ -165,7 +212,7 @@ export default function AffiliationsManager() {
                   <Table.Th>Categoria</Table.Th>
                   <Table.Th>Data</Table.Th>
                   <Table.Th>Status</Table.Th>
-                  <Table.Th style={{ width: 140 }}>Ações</Table.Th>
+                  <Table.Th style={{ width: 200 }}>Ações</Table.Th>
                 </Table.Tr>
               </Table.Thead>
               <Table.Tbody>
@@ -188,6 +235,16 @@ export default function AffiliationsManager() {
                         <Tooltip label="Baixar PDF">
                           <ActionIcon variant="subtle" color="blue" onClick={() => downloadPdf(item)}><Download size={15} /></ActionIcon>
                         </Tooltip>
+                        {item.doc_identidade_path && (
+                          <Tooltip label="Ver CNH / RG / Passaporte">
+                            <ActionIcon variant="subtle" color="blue" onClick={() => openAnexo(item.doc_identidade_path)}><IdCard size={15} /></ActionIcon>
+                          </Tooltip>
+                        )}
+                        {item.ata_eleicao_path && (
+                          <Tooltip label="Ver Ata de Eleição">
+                            <ActionIcon variant="subtle" color="blue" onClick={() => openAnexo(item.ata_eleicao_path)}><FileText size={15} /></ActionIcon>
+                          </Tooltip>
+                        )}
                         {item.status !== 'aprovado' && (
                           <Tooltip label="Aprovar">
                             <ActionIcon variant="subtle" color="green" onClick={() => setStatus(item, 'aprovado')}><Check size={15} /></ActionIcon>

@@ -68,6 +68,35 @@
   gap: 20px;
 }
 
+.terms {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+.termsBody { align-items: flex-start; }
+.termsLabel { font-size: 14px; line-height: 1.55; color: var(--text); cursor: pointer; }
+/* Alinha a lista com o texto do label (24px do checkbox md + 12px de espaço) */
+.termsDetails { margin-top: 8px; padding-left: 36px; }
+.termsList {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-align: justify;
+  hyphens: auto;
+}
+/* Ponto central do checkbox redondo, para parecer um radio */
+.radioDot {
+  width: 40% !important;
+  height: 40% !important;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 @media (max-width: 800px) {
   .formGrid { grid-template-columns: 1fr; }
   .rightsGrid { grid-template-columns: 1fr; }

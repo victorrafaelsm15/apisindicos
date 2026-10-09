@@ -15,15 +15,15 @@ npm run dev
 
 Acesse em `/#/admin/login` (link também no rodapé do site).
 
-O login é controlado por `src/lib/authService.js`, usando as variáveis
-de ambiente `VITE_ADMIN_EMAIL` e `VITE_ADMIN_PASSWORD` (defina-as no
-`.env` local e como variáveis de ambiente na Vercel/host de produção
-antes de publicar — sem elas configuradas, os valores padrão do código
-ficam ativos, então não deixe de configurar em produção).
+O login usa o **Supabase Auth**. Só entram contas cadastradas na tabela
+`admin_users` — veja a seção 5 de `supabase-setup.sql` para criar um
+administrador. As fichas de filiação, inscrições em eventos e anexos
+(dados pessoais) só podem ser lidos por administradores logados; a
+chave anônima do site só envia esses dados, não os lê.
 
 O painel permite gerenciar: Notícias/Cursos, Eventos, Documentos,
-Diretoria e Parceiros — os mesmos tipos de conteúdo do site do
-SINDICONDOMÍNIOS-PI.
+Diretoria e Parceiros, além de revisar as solicitações de associação e
+as inscrições em eventos.
 
 ## Conteúdo institucional
 
@@ -42,10 +42,10 @@ Dados pendentes de preenchimento (não inventados):
 
 ## Persistência de dados
 
-Funciona com localStorage automaticamente (sem configuração). Para
-persistência real entre dispositivos, configure o Supabase — copie
-`.env.example` para `.env` e preencha as chaves, depois crie as
-tabelas: `news`, `events`, `documents`, `board_members`, `partners`.
+Sem Supabase configurado, o site público funciona com localStorage
+(conteúdo de exemplo), mas o painel admin e os formulários com anexo
+não. Para produção, copie `.env.example` para `.env`, preencha as
+chaves e rode `supabase-setup.sql` no SQL Editor do Supabase.
 
 ## Build de produção
 

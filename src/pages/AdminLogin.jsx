@@ -12,9 +12,9 @@ export default function AdminLogin() {
 
   const onSubmit = async ({ email, password }) => {
     setError('');
-    await new Promise((r) => setTimeout(r, 300));
-    if (login(email, password)) navigate('/admin');
-    else setError('E-mail ou senha incorretos.');
+    const result = await login(email, password);
+    if (result.ok) navigate('/admin');
+    else setError(result.error);
   };
 
   return (
@@ -26,8 +26,8 @@ export default function AdminLogin() {
         <Text fw={800} size="lg">APIS</Text>
         <Text size="sm" c="dimmed" mb="lg">Painel administrativo</Text>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <TextInput label="E-mail" {...register('email', { required: true })} />
-          <PasswordInput label="Senha" mt="md" {...register('password', { required: true })} />
+          <TextInput label="E-mail" type="email" autoComplete="username" {...register('email', { required: true })} />
+          <PasswordInput label="Senha" mt="md" autoComplete="current-password" {...register('password', { required: true })} />
           {error && <Text c="red" size="sm" mt="sm">{error}</Text>}
           <Button type="submit" fullWidth mt="lg" radius="xl" color="blue.7" loading={isSubmitting}>Entrar</Button>
         </form>

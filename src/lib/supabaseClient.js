@@ -15,5 +15,15 @@ if (!isSupabaseConfigured) {
 
 export const supabase = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
-  supabaseAnonKey || 'placeholder-anon-key'
+  supabaseAnonKey || 'placeholder-anon-key',
+  {
+    auth: {
+      // Sessão do painel admin só dura enquanto a aba estiver aberta.
+      storage: typeof window !== 'undefined' ? window.sessionStorage : undefined,
+      persistSession: true,
+      autoRefreshToken: true,
+      // O site usa HashRouter (#/rota); não há login por link mágico/OAuth.
+      detectSessionInUrl: false,
+    },
+  }
 );

@@ -34,17 +34,26 @@ export default function CrudManager({ store, fields, title, emptyLabel }) {
 
   const handleSave = async () => {
     setSaving(true);
-    if (editing) await store.update(editing.id, form);
-    else await store.create(form);
-    setSaving(false);
-    setModalOpen(false);
-    notifications.show({ message: 'Salvo com sucesso.', color: 'blue' });
-    load();
+    try {
+      if (editing) await store.update(editing.id, form);
+      else await store.create(form);
+      setModalOpen(false);
+      notifications.show({ message: 'Salvo com sucesso.', color: 'blue' });
+      load();
+    } catch {
+      notifications.show({ title: 'Erro ao salvar', message: 'Não foi possível salvar. Faça login novamente e tente outra vez.', color: 'red' });
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleDelete = async (id) => {
-    await store.remove(id);
-    notifications.show({ message: 'Removido.', color: 'gray' });
+    try {
+      await store.remove(id);
+      notifications.show({ message: 'Removido.', color: 'gray' });
+    } catch {
+      notifications.show({ title: 'Erro ao remover', message: 'Não foi possível remover. Faça login novamente e tente outra vez.', color: 'red' });
+    }
     load();
   };
 
